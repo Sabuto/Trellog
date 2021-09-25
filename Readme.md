@@ -21,4 +21,6 @@ Output to changelog file:
   - Task three
   
 ## Todo
-If there are un checked items on the checklist it will create a card on the To Do list with the name of the card and the checklist
+- If there are un checked items on the checklist it will create a card on the To Do list with the name of the card and the checklist
+- Delete Cards from the next release List
+
