@@ -1,0 +1,31 @@
+﻿name: CI
+
+
+on:
+  push:
+    branches:
+      - master
+jobs:
+  
+  Release:
+    runs-on: windows-latest
+    
+    env:
+      SOLUTION_NAME: 'Trellog.sln'
+      PACKAGE_NAME: 'Trellog.Console'
+      
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        
+      - name: setup-msbuild
+        uses: microsoft/setup-mesbuild@v1
+        
+      - name: setup Nuget
+        uses: NuGet/setup-nuget@v1.0.5
+        
+      - name: Restore packages
+        run: nuget restore '${{ env.SOLUTION_NAME }}'
+        
+      - name: Build App
+        run: msbuild '${{env.SOLUTION_NAME}}'
