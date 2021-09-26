@@ -2,10 +2,6 @@
 {
     public class Config
     {
-        public Config()
-        {
-            
-        }
         public string? AppKey { get; set; }
         public string? ApiKey { get; set; }
         public string? BoardId { get; set; }

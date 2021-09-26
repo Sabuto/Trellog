@@ -26,7 +26,7 @@ jobs:
           msbuild '${{env.SOLUTION_NAME}}'
       - name: Publish zip
         if: success()
-        uses: actions/upload-artifact@v2.2.0        
+        uses: actions/upload-artifact@v2.2.0
         with:
           name: '${{ env.FILE_NAME }}'
           path: Trellog.Console/bin/Debug/*
