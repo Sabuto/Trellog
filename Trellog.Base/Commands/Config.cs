@@ -1,6 +1,4 @@
-﻿using System.IO;
-
-namespace Trellog.Base.Commands
+﻿namespace Trellog.Base.Commands
 {
     public class Config
     {
@@ -10,6 +8,12 @@ namespace Trellog.Base.Commands
             LoadData();
             ConfigData ??= new Models.Config();
         }
+
+        public string ConfigFile => "trello.json";
+
+        public Models.Config? ConfigData { get; set; }
+
+        public Services.Config ConfigService { get; }
 
         public void CreateBaseData(string apikey, string accessToken)
         {
@@ -23,7 +27,7 @@ namespace Trellog.Base.Commands
         {
             ConfigData.BoardId = boardId;
             ConfigData.ListId = listId;
-            
+
             SaveData();
         }
 
@@ -36,11 +40,5 @@ namespace Trellog.Base.Commands
         {
             ConfigService.SaveConfig(ConfigData!, ConfigFile);
         }
-
-        public string ConfigFile => "trello.json";
-
-        public Models.Config? ConfigData { get; set; }
-
-        public Services.Config ConfigService { get; }
     }
 }

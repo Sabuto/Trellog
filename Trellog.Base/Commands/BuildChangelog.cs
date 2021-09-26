@@ -82,7 +82,6 @@ namespace Trellog.Base.Commands
                 changelogText.Append(MdText.LineBreak);
             }
 
-
             MdWriter writer = new(_changelogLocation);
 
             writer.Write(changelogText);

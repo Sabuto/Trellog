@@ -1,39 +1,29 @@
 ﻿name: CI
-
-
 on:
   push:
     branches:
       - master
 jobs:
-  
   Release:
     runs-on: windows-latest
-    
     env:
       SOLUTION_NAME: 'Trellog.sln'
       PACKAGE_NAME: 'Trellog.Console'
-      
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-        
       - name: setup-msbuild
         uses: microsoft/setup-msbuild@v1
-        
       - name: setup Nuget
         uses: NuGet/setup-nuget@v1.0.5
-        
       - name: Restore packages
         run: nuget restore '${{ env.SOLUTION_NAME }}'
-        
       - name: Build App
         run: |
           $env:FILE_DATE=(Get-Date -UFormat "%F")
           $env:FILE_NAME="${{ env.PACKAGE_NAME }}-${env:FILE_DATE}-${{ github.sha }}"
           echo "FILE_NAME=${env:FILE_NAME}" >> ${env:GITHUB_ENV}
           msbuild '${{env.SOLUTION_NAME}}'
-
       - name: Publish zip
         if: success()
         uses: actions/upload-artifact@v2.2.0        
